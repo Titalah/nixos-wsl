@@ -31,6 +31,7 @@
     vim
     wget
     zip
+    tldr
   ];
 
   stable-packages = with pkgs; [
@@ -83,7 +84,6 @@ in {
     homeDirectory = "/home/${username}";
 
     sessionVariables.EDITOR = "nvim";
-    # FIXME: set your preferred $SHELL
     sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/fish";
   };
 
@@ -103,7 +103,6 @@ in {
     nix-index.enableFishIntegration = true;
     nix-index-database.comma.enable = true;
 
-    # FIXME: disable this if you don't want to use the starship prompt
     starship.enable = true;
     starship.settings = {
       aws.disabled = true;
@@ -141,8 +140,8 @@ in {
         side-by-side = true;
         navigate = true;
       };
-      userEmail = ""; # FIXME: set your git email
-      userName = ""; #FIXME: set your git username
+      userEmail = "desmaraislowen@gmail.com"; 
+      userName = "Titalah";
       extraConfig = {
         # FIXME: uncomment the next lines if you want to be able to clone private https repos
         # url = {
@@ -166,11 +165,8 @@ in {
       };
     };
 
-    # FIXME: This is my fish config - you can fiddle with it if you want
     fish = {
       enable = true;
-      # FIXME: run 'scoop install win32yank' on Windows, then add this line with your Windows username to the bottom of interactiveShellInit
-      # fish_add_path --append /mnt/c/Users/<Your Windows Username>/scoop/apps/win32yank/0.1.1
       interactiveShellInit = ''
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
 
@@ -183,6 +179,7 @@ in {
           + "/extras/kanagawa.fish")}
 
         set -U fish_greeting
+	fish_add_path --append /mnt/c/Users/LowenDesmarais/scoop/apps/win32yank/0.1.1
       '';
       functions = {
         refresh = "source $HOME/.config/fish/config.fish";
@@ -230,9 +227,7 @@ in {
         pbpaste = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command 'Get-Clipboard'";
         explorer = "/mnt/c/Windows/explorer.exe";
         
-        # To use code as the command, uncomment the line below. Be sure to replace [my-user] with your username. 
-        # If your code binary is located elsewhere, adjust the path as needed.
-        # code = "/mnt/c/Users/[my-user]/AppData/Local/Programs/'Microsoft VS Code'/bin/code";
+        #code = "/mnt/c/Users/LowenDesmarais/AppData/Local/Programs/'Microsoft VS Code'/bin/code";
       };
       plugins = [
         {
